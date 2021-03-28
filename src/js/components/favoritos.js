@@ -1,17 +1,11 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { Context } from "../store/appContext";
+import getState from "../store/flux";
 
 const Favorites = () => {
-	//const { id, especific } = useParams();
-
-	//const [array, setArray] = useState([]);
-	//useEffect(() => {
-	//	fetch(`https://www.swapi.tech/api/${especific}/${id}`)
-	//		.then(response => response.json())
-	//		.then(data => setArray(data.result.properties))
-	//		.catch(error => console.log(error));
-	//}, []);
-	//console.log(array.name);
+	const { store, actions } = useContext(Context);
+	console.log(store.favorito);
 	return (
 		<div className="dropdown">
 			<button
@@ -22,12 +16,22 @@ const Favorites = () => {
 				aria-haspopup="true"
 				aria-expanded="false">
 				Favorites
-				<span className="badge badge-light">4</span>
+				<span className="badge badge-light">
+					{store.favoritos.length}
+				</span>
 			</button>
 			<div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-				<Link className="dropdown-item">Action</Link>
-				<Link className="dropdown-item">Another action</Link>
-				<Link className="dropdown-item">Something else here</Link>
+				{store.favoritos.map(favorito => (
+					<div key={favorito.id}>
+						<div>{favorito.name}</div>
+						<div>
+							<button
+								onClick={() => actions.deleteFav(favorito.id)}>
+								x
+							</button>
+						</div>
+					</div>
+				))}
 			</div>
 		</div>
 	);

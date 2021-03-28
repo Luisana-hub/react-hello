@@ -22,6 +22,7 @@ function Home() {
 							title={item.name}
 							id={item.uid}
 							especific={"people"}
+							actions={actions}
 						/>
 					</div>
 				))}
@@ -36,6 +37,7 @@ function Home() {
 							title={item.name}
 							id={item.uid}
 							especific={"planets"}
+							actions={actions}
 						/>
 					</div>
 				))}
@@ -50,6 +52,7 @@ function Home() {
 							title={item.name}
 							id={item.uid}
 							especific={"vehicles"}
+							actions={actions}
 						/>
 					</div>
 				))}

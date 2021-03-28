@@ -3,7 +3,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			characters: [],
 			planets: [],
-			vehiculos: []
+			vehiculos: [],
+			favoritos: [],
+			favorito: " ",
+			id: " "
 		},
 		actions: {
 			fetchCharacters: () => {
@@ -23,6 +26,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(response => response.json())
 					.then(data => setStore({ vehiculos: data.results }))
 					.catch(error => console.log(error));
+			},
+			agregaFav: favorito => {
+				const store = getStore();
+				const newFav = {
+					id: new Date().getTime(),
+					name: favorito
+				};
+				setStore({ favoritos: [...store.favoritos].concat(newFav) });
+			},
+			deleteFav: id => {
+				const store = getStore();
+				const updatedFav = [...store.favoritos].filter(
+					favorito => favorito.id !== id
+				);
+				setStore((store.favoritos = updatedFav));
 			}
 		}
 	};

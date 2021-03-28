@@ -13,7 +13,6 @@ const Detalle = () => {
 			.then(data => setArray(data.result.properties))
 			.catch(error => console.log(error));
 	}, []);
-	console.log(array.name);
 
 	return (
 		<>

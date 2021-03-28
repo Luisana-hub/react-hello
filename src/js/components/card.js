@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import getState from "../store/flux";
+import PropTypes from "prop-types";
 
 const Card = props => {
 	return (
@@ -22,7 +23,12 @@ const Card = props => {
 						</Link>
 					</div>
 					<div className="col-3">
-						<Link>FAV</Link>
+						<button
+							onClick={() =>
+								props.actions.agregaFav(props.title)
+							}>
+							FAV
+						</button>
 					</div>
 				</div>
 			</div>
@@ -30,3 +36,10 @@ const Card = props => {
 	);
 };
 export default Card;
+
+Card.propTypes = {
+	title: PropTypes.any,
+	id: PropTypes.any,
+	especific: PropTypes.any,
+	actions: PropTypes.object
+};
